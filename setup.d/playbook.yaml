@@ -1,0 +1,52 @@
+---
+## \file
+# \date 2024
+# \copyright ItSANgo@gmail.com
+# SPDX-License-Identifier: AGPL-3.0-or-later
+- name: Setup WSL
+  hosts: localhost
+  tasks:
+    - name: Update APT
+      become: true
+      ansible.builtin.apt:
+        name: "*"
+    - name: Install packages
+      become: true
+      ansible.builtin.apt:
+        name:
+          - ansible-lint
+          - zip
+          - unzip
+          - shellcheck
+          - adr-tools
+    - name: Install NVM
+      block:
+        - name: Create the temporary file name for NVM
+          ansible.builtin.tempfile:
+          register: nvm_installer
+        - name: Get NVM
+          ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh
+            dest: "{{ nvm_installer.path }}"
+            mode: '700'
+        - name: Run NVM installer
+          ansible.builtin.command:
+            cmd: "{{ nvm_installer.path }}"
+          register: result
+          changed_when: result.rc != 0
+    - name: Install SDKMAN
+      block:
+        - name: Create the temporary file name for SDKMAN
+          ansible.builtin.tempfile:
+          register: sdkman_installer
+        - name: Get SDKMAN
+          ansible.builtin.get_url:
+            url: https://get.sdkman.io
+            dest: "{{ sdkman_installer.path }}"
+            mode: '700'
+        - name: Run SDKMAN installer
+          ansible.builtin.command:
+            cmd: "{{ sdkman_installer.path }}"
+          register: result
+          changed_when: result.rc != 0
+...
