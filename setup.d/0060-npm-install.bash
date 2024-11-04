@@ -7,4 +7,4 @@
 
 set -x
 npm install --location=global npm
-npm install --location=global --loglevel=verbose standard jsdoc
+npm install --location=global --loglevel=verbose jsdoc standard azurite
