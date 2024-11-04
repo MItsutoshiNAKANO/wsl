@@ -14,12 +14,13 @@
       become: true
       ansible.builtin.apt:
         name:
-          - strace
           - ansible-lint
           - zip
           - unzip
           - shellcheck
           - adr-tools
+          - pwgen
+          - strace
     - name: Install NVM
       block:
         - name: Create the temporary file name for NVM
