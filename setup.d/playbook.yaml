@@ -51,4 +51,19 @@
             cmd: "{{ sdkman_installer.path }}"
           register: result
           changed_when: result.rc != 0
+    - name: Install Perlbrew
+      block:
+        - name: Create the temporary file name for Perlbrew
+          ansible.builtin.tempfile:
+          register: perlbrew_installer
+        - name: Get Perlbrew
+          ansible.builtin.get_url:
+            url: https://install.perlbrew.pl
+            dest: "{{ perlbrew_installer.path }}"
+            mode: '700'
+        - name: Run Perlbrew installer
+          ansible.builtin.command:
+            cmd: "{{ perlbrew_installer.path }}"
+          register: result
+          changed_when: result.rc != 0
 ...
