@@ -17,6 +17,16 @@
           - ansible-lint
           - zip
           - unzip
+          - gcc
+          - g++
+          - gcc-14
+          - g++-14
+          - make
+          - byacc
+          - bison
+          - flex
+          - cmake
+          - cmake-format
           - shellcheck
           - adr-tools
           - pwgen
@@ -66,4 +76,13 @@
             cmd: "{{ perlbrew_installer.path }}"
           register: result
           changed_when: result.rc != 0
+        - name: Remove Perlbrew in ~/.bashrc
+          ansible.builtin.lineinfile:
+            path: ~/.bashrc
+            search_string: '~/perl5/perlbrew/etc/bashrc'
+            state: absent
+        - name: Add Perlbrew to ~/.bashrc
+          ansible.builtin.lineinfile:
+            path: ~/.bashrc
+            line: '[[ -r ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc'
 ...
