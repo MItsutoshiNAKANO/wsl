@@ -17,16 +17,52 @@
           - ansible-lint
           - zip
           - unzip
+          - postgresql-all
+          - postgresql-client
+          - libecpg-dev
+          - apache2
+          - libapache2-mod-perl2-dev
+          - libcgi-application-plugin-authentication-perl
+          - libcgi-application-plugin-dbh-perl
+          - libcgi-application-plugin-devpopup-perl
+          - libcgi-application-plugin-session-perl
+          - libcgi-application-plugin-validaterm-perl
+          - libcgi-pm-perl
+          - libcgi-session-perl
+          - libcgi-session-serialize-yaml-perl
+          - libhtml-template-pro-perl
+          - libdbd-csv-perl
+          - libdbd-excel-perl
+          - libdbd-pg-perl
+          - libdbd-odbc-perl
+          - libdbd-sqlite3-perl
+          - libdbi-perl
+          - libdbi-test-perl
+          - libyaml-perl
+          - libyaml-libyaml-perl
+          - libanyevent-perl
+          - libclass-refresh-perl
+          - libcompiler-lexer-perl
+          - libscalar-list-utils-perl
+          - libmoose-perl
+          - libpadwalker-perl
+          - libscalar-list-utils-perl
+          - libcoro-perl
+          - libperl-languageserver-perl
           - gcc
           - g++
           - gcc-14
           - g++-14
+          - cflow
+          - cflow-l10n
+          - cflow-doc
           - make
           - byacc
           - bison
           - flex
           - cmake
           - cmake-format
+          - doxygen
           - shellcheck
           - adr-tools
           - pwgen
@@ -85,4 +121,21 @@
           ansible.builtin.lineinfile:
             path: ~/.bashrc
             line: '[[ -r ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc'
+    - name: Install Perl-5.40.0
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: |
+          source ~/perl5/perlbrew/etc/bashrc
+          perlbrew switch perl-5.40.0 || perlbrew install --notest perl-5.40.0
+          perlbrew switch perl-5.40.0
+      register: result
+      changed_when: result.rc != 0
+    - name: Install Perl::LanguageServer
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: |
+          source ~/perl5/perlbrew/etc/bashrc
+          perlbrew install-cpanm Perl::LanguageServer
+      register: result
+      changed_when: result.rc != 0
 ...
