@@ -67,6 +67,7 @@
           - adr-tools
           - pwgen
           - strace
+          - gdb
     - name: Install NVM
       block:
         - name: Create the temporary file name for NVM
