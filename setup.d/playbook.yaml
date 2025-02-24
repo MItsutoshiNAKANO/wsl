@@ -1,8 +1,10 @@
 ---
-## \file
-# \date 2024
-# \copyright ItSANgo@gmail.com
-# SPDX-License-Identifier: AGPL-3.0-or-later
+##
+# @file
+# @date 2025
+# @copyright
+#   ItSANgo@gmail.com
+#   SPDX-License-Identifier: AGPL-3.0-or-later
 - name: Setup WSL
   hosts: localhost
   tasks:
@@ -68,6 +70,7 @@
           - pwgen
           - strace
           - gdb
+          - valgrind
     - name: Install NVM
       block:
         - name: Create the temporary file name for NVM
