@@ -126,13 +126,13 @@
           ansible.builtin.lineinfile:
             path: ~/.bashrc
             line: '[[ -r ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc'
-    - name: Install Perl-5.40.0
+    - name: Install Perl-5.40.2
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
           source ~/perl5/perlbrew/etc/bashrc
-          perlbrew switch perl-5.40.0 || perlbrew install --notest perl-5.40.0
-          perlbrew switch perl-5.40.0
+          perlbrew switch perl-5.40.2 || perlbrew install --notest perl-5.40.2
+          perlbrew switch perl-5.40.2
       register: result
       changed_when: result.rc != 0
     - name: Install Perl::LanguageServer
