@@ -126,21 +126,31 @@
           ansible.builtin.lineinfile:
             path: ~/.bashrc
             line: '[[ -r ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc'
-    - name: Install Perl-5.40.2
+    - name: Install Perl-5.42.0
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
           source ~/perl5/perlbrew/etc/bashrc
-          perlbrew switch perl-5.40.2 || perlbrew install --notest perl-5.40.2
-          perlbrew switch perl-5.40.2
+          perlbrew switch perl-5.42.0 || perlbrew install --notest perl-5.42.0
+          perlbrew switch perl-5.42.0
       register: result
       changed_when: result.rc != 0
-    - name: Install Perl::LanguageServer
+    - name: Install cpanminus
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
           source ~/perl5/perlbrew/etc/bashrc
-          perlbrew install-cpanm Perl::LanguageServer
+          set -o pipefail
+          echo 'y' | perlbrew install-cpanm
+      register: result
+      changed_when: result.rc != 0
+    - name: Install Perl modules
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: |
+          source ~/perl5/perlbrew/etc/bashrc
+          cpanm Modern::Perl Perl::Tidy Perl::Critic Data::Dumper\
+            Try::Tiny Path::Tiny JSON::XS Perl::LanguageServer DBD::Pg
       register: result
       changed_when: result.rc != 0
 ...
