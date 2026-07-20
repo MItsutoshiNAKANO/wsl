@@ -56,7 +56,7 @@
           - libxml-rss-simplegen-perl
           - libxml-rss-libxml-perl
           - libxml-rss-feed-perl
-          - libxml-rss-per
+          - libxml-rss-perl
           - libxml-sax-base-perl
           - libxml-sax-expat-incremental-perl
           - libxml-sax-perl
@@ -181,13 +181,13 @@
           ansible.builtin.lineinfile:
             path: ~/.bashrc
             line: '[[ -r ~/perl5/perlbrew/etc/bashrc ]] && source ~/perl5/perlbrew/etc/bashrc'
-    - name: Install Perl-5.42.2
+    - name: Install Perl-5.44.0
       ansible.builtin.shell:
         executable: /bin/bash
         cmd: |
           source ~/perl5/perlbrew/etc/bashrc
-          perlbrew switch perl-5.42.2 || perlbrew install --notest perl-5.42.2
-          perlbrew switch perl-5.42.2
+          perlbrew switch perl-5.44.0 || perlbrew install --notest perl-5.44.0
+          perlbrew switch perl-5.44.0
       register: result
       changed_when: result.rc != 0
     - name: Install cpanminus
@@ -205,7 +205,15 @@
         cmd: |
           source ~/perl5/perlbrew/etc/bashrc
           cpanm Modern::Perl Perl::Tidy Perl::Critic Data::Dumper\
-            Try::Tiny Path::Tiny JSON::XS Perl::LanguageServer DBD::Pg
+            Try::Tiny Path::Tiny JSON::XS Perl::LanguageServer DBD::Pg\
+            DBD::CSV DBD::Excel\
+            Readonly YAML HTML::Template::Pro\
+            CGI::Application CGI::Session CGI::Session::Serialize::YAML\
+            CGI::Application::Plugin::Authentication\
+            CGI::Application::Plugin::DBH\
+            CGI::Application::Plugin::DevPopup\
+            CGI::Application::Plugin::Session\
+            CGI::Application::Plugin::ValidateRM
       register: result
       changed_when: result.rc != 0
 ...
