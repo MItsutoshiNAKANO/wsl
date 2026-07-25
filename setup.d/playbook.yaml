@@ -48,6 +48,8 @@
           - libscalar-list-utils-perl
           - libmoose-perl
           - libpadwalker-perl
+          - libperl-critic-perl
+          - libperl-languageserver-perl
           - libscalar-list-utils-perl
           - libcoro-perl
           - libperl-languageserver-perl
@@ -120,6 +122,9 @@
           - cmake
           - cmake-format
           - doxygen
+          - doxygen-doc
+          - graphviz
+          - graphviz-doc
           - shellcheck
           - adr-tools
           - pwgen
