@@ -68,7 +68,7 @@
           - libxml-semanticdiff-perl
           - libxml-sax-expat-perl
           - libxml-simpleobject-enhanced-perl
-          - libxml-simpleobject-libxml-perl/noble:0:53
+          - libxml-simpleobject-libxml-perl
           - libxml-simpleobject-perl
           - libxml-smart-perl
           - libxml-struct-perl
@@ -139,7 +139,7 @@
           register: nvm_installer
         - name: Get NVM
           ansible.builtin.get_url:
-            url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh
+            url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh
             dest: "{{ nvm_installer.path }}"
             mode: '700'
         - name: Run NVM installer
