@@ -8,5 +8,6 @@
 sudo apt-get install software-properties-common python3.12 python3.12-doc pipx
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt-get install ansible
-sudo apt-remove --purge --yes ansible-lint
+sudo apt-get purge --yes ansible-lint
+sudo apt-get autoremove --yes
 pipx ensurepath --force
