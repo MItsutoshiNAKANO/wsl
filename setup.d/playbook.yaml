@@ -93,7 +93,7 @@
           - libxxx-perl
           - libyahc-perl
           - libyaml-appconfig-perl
-          - libyaml-libyaml-perl/
+          - libyaml-libyaml-perl
           - libyaml-perl
           - libyaml-tiny-perl
           - libyaml-syck-perl
