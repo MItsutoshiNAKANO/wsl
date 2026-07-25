@@ -1,10 +1,12 @@
 #! /bin/sh -eux
 
 ## \file
-# \date 2024
+# \date 2026
 # \copyright ItSANgo@gmail.com
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-sudo apt-get install software-properties-common
-sudo apt-add-repository --update ppa:ansible/ansible
+sudo apt-get install software-properties-common python3.12 python3.12-doc pipx
+sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt-get install ansible
+sudo apt-remove --purge --yes ansible-lint
+pipx ensurepath --force
