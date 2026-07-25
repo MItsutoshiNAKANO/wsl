@@ -3,12 +3,15 @@
     "cSpell.words": [
         "cflow",
         "cpanm",
+        "lib",
         "libapache",
         "libcgi",
         "libdbi",
         "libecpg",
+        "libperl",
         "libyaml",
         "perlbrew",
+        "pipx",
         "SDKMAN"
     ]
 }
