@@ -211,7 +211,6 @@
           source ~/perl5/perlbrew/etc/bashrc
           cpanm Modern::Perl Perl::Tidy Perl::Critic Data::Dumper\
             Try::Tiny Path::Tiny JSON::XS Perl::LanguageServer\
-            # DBD::Pg\
             DBD::CSV DBD::Excel\
             Readonly YAML HTML::Template::Pro\
             CGI::Application CGI::Session CGI::Session::Serialize::YAML\
@@ -220,6 +219,7 @@
             CGI::Application::Plugin::DevPopup\
             CGI::Application::Plugin::Session\
             CGI::Application::Plugin::ValidateRM
+            # DBD::Pg
       register: result
       changed_when: result.rc != 0
 ...
